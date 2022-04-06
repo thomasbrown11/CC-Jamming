@@ -1,4 +1,4 @@
-const accessToken = '';
+const accessToken;
 
 const Spotify = {
   getAccessToken() {
@@ -7,4 +7,4 @@ const Spotify = {
     } else { }
   }
 
-export Spotify
+export default Spotify;
