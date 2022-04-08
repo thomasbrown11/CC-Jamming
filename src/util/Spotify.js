@@ -1,9 +1,9 @@
-import SearchBar from "../Components/SearchBar/SearchBar";
+//import SearchBar from "../Components/SearchBar/SearchBar";
 
 const clientID = '7e08557df599412a819c6c54aae2fb33';
 const redirectURI = 'http://localhost:3000/';
 
-const accessToken = '';
+let accessToken = '';
 
 const Spotify = {
   getAccessToken() {
@@ -12,7 +12,7 @@ const Spotify = {
     }
     //check for access token match 
     const accessTokenMatch = window.location.href.match(/access_token=([^&]*)/);
-    const expiresInMatch = window.location.href.match(/expires_in=([^&]*)/)
+    const expiresInMatch = window.location.href.match(/expires_in=([^&]*)/);
 
     //if accessToken and expiration exists in current URL 
     if (accessTokenMatch && expiresInMatch) {
@@ -21,7 +21,7 @@ const Spotify = {
       //set variable for expiration equal to a number taken from URL string 
       const expiresIn = Number(expiresInMatch[1]);
       //set access token expiration
-      window.setTimeout(() => { accessToken = '', expiresIn * 1000 });
+      window.setTimeout(() => accessToken = '', expiresIn * 1000);
       //clear URL parameters so that a new accessToken can be grabbed upon expiration 
       window.history.pushState('Access Token', null, '/');
       return accessToken;
@@ -54,6 +54,9 @@ const Spotify = {
       }
     })
   }
+  // savePlaylist(playlist, uriArray) {
+  //   if (playlist && uriArray) { } else { return }
+  // }
 }
 
 export default Spotify;
