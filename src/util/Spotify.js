@@ -89,8 +89,13 @@ const Spotify = {
         method: 'POST',
         //must be converted to proper jason string to be read by request 
         body: JSON.stringify({ name: playlist })
+        //convert response from the playlist POST request to JSON object 
+      }).then(response => response.json()
+        //pull id from new JSON response object and assign to the playlistID (URI)
+      ).then(jsonResponse => {
+        const playlistID = jsonResponse.id;
       })
-    });
+    })
   }
 }
 
