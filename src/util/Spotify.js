@@ -93,7 +93,10 @@ const Spotify = {
       }).then(response => response.json()
         //pull id from new JSON response object and assign to the playlistID (URI)
       ).then(jsonResponse => {
+        //pull playlistID for next POST request 
         const playlistID = jsonResponse.id;
+        //This endpoint is a POST that updates an existing playlist (made in previous POST)
+        //by pulling URIs from an array to tell Spotify API to build the list. 201 response if correct returning same playlistID value;
         return fetch(`https://api.spotify.com/v1/users/${userID}/playlists/${playlistID}/tracks`, {
           headers: header,
           method: 'POST',

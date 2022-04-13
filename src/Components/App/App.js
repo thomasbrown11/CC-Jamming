@@ -54,8 +54,17 @@ class App extends
   }
 
   savePlaylist() {
-    //alert('this method is linked')
+    //grab all uri data from each track (auto-pulled from Spotify) and map to an array for reference
     const trackURIs = this.state.playlistTracks.map(track => track.uri);
+    //call savePlaylist, use App.js state get name argument, and the above array as the uriArray argument.
+    //ultimately this will be pulling in userID, create a playlist, and pull trackURIs into the new playlist POST request.. map to save button
+    //once the POST request is sent revert values back to generic values so user can tell the playlist is executed. 
+    Spotify.savePlaylist(this.state.playlistName, trackURIs).then(() => {
+      this.setState({
+        playlistName: 'New Playlist',
+        playlistTracks: []
+      })
+    })
   }
 
   search(term) {
