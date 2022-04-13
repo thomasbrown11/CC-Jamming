@@ -11,17 +11,9 @@ class App extends
   constructor(props) {
     super(props);
     this.state = {
-      searchResults: [
-        { name: 'name1', artist: 'artist1', album: 'album1', id: 1 },
-        { name: 'name2', artist: 'artist2', album: 'album2', id: 2 },
-        { name: 'name3', artist: 'artist3', album: 'album3', id: 3 }
-      ],
+      searchResults: [],
       playlistName: 'Test Playlist',
-      playlistTracks: [
-        { name: 'playlist-name1', artist: 'playlist-artist1', album: 'playlist-album1', id: 4 },
-        { name: 'playlist-name2', artist: 'playlist-artist2', album: 'playlist-album2', id: 5 },
-        { name: 'playlist-name3', artist: 'playlist-artist3', album: 'playlist-album3', id: 6 }
-      ]
+      playlistTracks: []
     }
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);

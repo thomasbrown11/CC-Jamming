@@ -34,7 +34,7 @@ const Spotify = {
 
   search(searchTerm) {
     //call getAccessToken for valid token, new variable here to use within this method specifically
-    const accessToken = Spotify.getAccessToken;
+    const accessToken = Spotify.getAccessToken();
     //proper HTTP request detailed by Spotify leveraging fetch promise. 
     //headers is an optional custom add-on which provides authorization
     //this is the actual search query. 
@@ -47,10 +47,12 @@ const Spotify = {
       return response.json();
       //grab the new JSON object. If track isn't present return empty array, otherwise map a new properly formatted object
     }).then(jsonResponse => {
-      if (!jsonResponse.track) {
+      //4/13 changed jsonResponse.track to jsonResponse.tracks 
+      if (!jsonResponse.tracks) {
         return [];
       } else {
-        return jsonResponse.tracks.item.map(track => ({
+        //4/13 changes jsonResponse.tracks.item.map to jsonReponse.tracks.items.map
+        return jsonResponse.tracks.items.map(track => ({
           id: track.id,
           name: track.name,
           artist: track.artists[0].name,
@@ -63,8 +65,9 @@ const Spotify = {
   },
 
   savePlaylist(playlist, uriArray) {
-    //failsafe, require these parameters are entered
-    if (!playlist || uriArray) {
+    //failsafe, require these parameters are entered checking for the absence of playlist or uriArray 
+    //these arguments are pulled from React components within App and are dependent on correct App state changes from Spotify.search()
+    if (!playlist || !uriArray) {
       return;
     }
     //leverage above method to get valid token
