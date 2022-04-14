@@ -20,6 +20,7 @@ export class SearchBar extends
 
   handleTermChange(event) {
     this.setState({ term: event.target.value })
+    this.props.onSearch(this.state.term);
   }
 
   render() {
