@@ -1,7 +1,7 @@
 //import SearchBar from "../Components/SearchBar/SearchBar";
 
 const clientID = '7e08557df599412a819c6c54aae2fb33';
-const redirectURI = 'http://localhost:3000/';
+const redirectURI = 'http://CCjammm.surge.sh';
 
 let accessToken = '';
 
